@@ -1,0 +1,192 @@
+/* ── Google Font ───────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+/* ── Root & Body ───────────────────────────────────────── */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: 'Inter', sans-serif;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #1a0533 0%, #0d2b4e 50%, #0a3d2e 100%);
+    background-attachment: fixed;
+    color: #fff;
+}
+
+/* ── Glowing blobs ─────────────────────────────────────── */
+body::before {
+    content: '';
+    position: fixed;
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(127,119,221,0.25), transparent 70%);
+    top: -100px; left: -100px;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 0;
+}
+
+body::after {
+    content: '';
+    position: fixed;
+    width: 350px; height: 350px;
+    background: radial-gradient(circle, rgba(29,158,117,0.2), transparent 70%);
+    bottom: -80px; right: -80px;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.container { position: relative; z-index: 1; }
+
+/* ── Navbar ────────────────────────────────────────────── */
+.navbar {
+    background: rgba(255,255,255,0.07) !important;
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    padding: 14px 0;
+}
+
+.navbar-brand {
+    font-weight: 700;
+    font-size: 1.4rem;
+    color: #fff !important;
+    letter-spacing: 0.5px;
+}
+
+.navbar-brand i { color: #7f77dd; margin-right: 6px; }
+
+.nav-link {
+    color: rgba(255,255,255,0.75) !important;
+    font-size: 0.9rem;
+    margin-left: 8px;
+    transition: color 0.2s;
+}
+
+.nav-link:hover { color: #fff !important; }
+
+/* ── Glass Card ────────────────────────────────────────── */
+.glass-card {
+    background: rgba(255,255,255,0.08);
+    backdrop-filter: blur(16px);
+    border: 1px solid rgba(255,255,255,0.13);
+    border-radius: 16px;
+    padding: 1.5rem;
+}
+
+/* ── Auth Pages ────────────────────────────────────────── */
+.auth-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+}
+
+.auth-card {
+    background: rgba(255,255,255,0.08);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 20px;
+    padding: 2.5rem;
+    width: 100%;
+    max-width: 420px;
+}
+
+.auth-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.auth-icon {
+    font-size: 2.5rem;
+    color: #7f77dd;
+    display: block;
+    margin-bottom: 0.8rem;
+}
+
+.auth-header h2 {
+    font-weight: 600;
+    font-size: 1.6rem;
+    color: #fff;
+}
+
+.auth-header p {
+    color: rgba(255,255,255,0.55);
+    font-size: 0.9rem;
+    margin-top: 4px;
+}
+
+.auth-footer {
+    text-align: center;
+    margin-top: 1.5rem;
+    font-size: 0.88rem;
+    color: rgba(255,255,255,0.55);
+}
+
+.auth-footer a {
+    color: #afa9ec;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.auth-footer a:hover { color: #fff; }
+
+/* ── Form Controls ─────────────────────────────────────── */
+.form-label {
+    color: rgba(255,255,255,0.75);
+    font-size: 0.88rem;
+    font-weight: 500;
+    margin-bottom: 6px;
+}
+
+.form-control {
+    background: rgba(255,255,255,0.07) !important;
+    border: 1px solid rgba(255,255,255,0.15) !important;
+    border-radius: 10px !important;
+    color: #fff !important;
+    padding: 10px 14px;
+    font-size: 0.92rem;
+    transition: border 0.2s, box-shadow 0.2s;
+}
+
+.form-control::placeholder { color: rgba(255,255,255,0.3) !important; }
+
+.form-control:focus {
+    background: rgba(255,255,255,0.11) !important;
+    border-color: rgba(127,119,221,0.6) !important;
+    box-shadow: 0 0 0 3px rgba(127,119,221,0.15) !important;
+    outline: none;
+}
+
+/* ── Buttons ───────────────────────────────────────────── */
+.btn-primary {
+    background: linear-gradient(135deg, #7f77dd, #534ab7) !important;
+    border: none !important;
+    border-radius: 10px !important;
+    padding: 10px 20px;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+    transition: opacity 0.2s, transform 0.1s;
+}
+
+.btn-primary:hover { opacity: 0.9; transform: translateY(-1px); }
+.btn-primary:active { transform: translateY(0); }
+
+/* ── Alerts ────────────────────────────────────────────── */
+.alert {
+    background: rgba(255,255,255,0.08) !important;
+    backdrop-filter: blur(10px);
+    border-radius: 12px !important;
+    color: #fff !important;
+    border: 1px solid rgba(255,255,255,0.15) !important;
+}
+
+.alert-success { border-color: rgba(29,158,117,0.4) !important; }
+.alert-danger  { border-color: rgba(212,83,126,0.4) !important; }
+
+/* ── Page Header ───────────────────────────────────────── */
+.page-header h2 {
+    font-weight: 600;
+    font-size: 1.6rem;
+    color: #fff;
+}
+
+.page-header p { color: rgba(255,255,255,0.6); }

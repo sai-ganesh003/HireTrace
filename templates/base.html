@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HireTrace</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand" href="{{ url_for('dashboard.index') }}">
+                <i class="bi bi-briefcase-fill"></i> HireTrace
+            </a>
+            <div class="navbar-nav ms-auto">
+                {% if current_user.is_authenticated %}
+                <a class="nav-link" href="{{ url_for('dashboard.index') }}">
+                    <i class="bi bi-speedometer2"></i> Dashboard
+                </a>
+                <a class="nav-link" href="{{ url_for('jobs.list_jobs') }}">
+                    <i class="bi bi-list-ul"></i> Jobs
+                </a>
+                <a class="nav-link" href="{{ url_for('auth.logout') }}">
+                    <i class="bi bi-box-arrow-right"></i> Logout
+                </a>
+                {% else %}
+                <a class="nav-link" href="{{ url_for('auth.login') }}">Login</a>
+                <a class="nav-link" href="{{ url_for('auth.register') }}">Register</a>
+                {% endif %}
+            </div>
+        </div>
+    </nav>
+
+    <!-- Flash messages -->
+    <div class="container mt-3">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+                    {{ message }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </div>
+
+    <!-- Page content -->
+    <div class="container mt-4">
+        {% block content %}{% endblock %}
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    {% block scripts %}{% endblock %}
+</body>
+</html>
