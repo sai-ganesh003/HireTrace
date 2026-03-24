@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2>My Jobs</h2>
+        <a href="{{ url_for('jobs.add_job') }}" class="btn btn-primary">+ Add Job</a>
+    </div>
+    
+    {% if jobs %}
+    <div class="table-responsive">
+        <table class="table table-dark table-hover">
+            <thead>
+                <tr>
+                    <th>Company</th>
+                    <th>Position</th>
+                    <th>Status</th>
+                    <th>Applied Date</th>
+                    <th>Follow-up</th>
+                    <th>Notes</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for job in jobs %}
+                <tr>
+                    <td>{{ job.company }}</td>
+                    <td>{{ job.position }}</td>
+                    <td>
+                        <span class="badge {% if job.status == 'Applied' %}bg-primary{% elif job.status == 'Interview' %}bg-warning{% elif job.status == 'Offered' %}bg-success{% else %}bg-danger{% endif %}">
+                            {{ job.status }}
+                        </span>
+                    </td>
+                    <td>{{ job.applied_date }}</td>
+                    <td>{{ job.follow_up_date or '-' }}</td>
+                    <td>{{ job.notes[:30] or '-' }}</td>
+                    <td>
+                        <a href="{{ url_for('jobs.edit_job', job_id=job.id) }}" class="btn btn-sm btn-warning">Edit</a>
+                        <form method="POST" action="{{ url_for('jobs.delete_job', job_id=job.id) }}" style="display:inline;">
+                            <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Delete this job?')">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% else %}
+    <div class="alert alert-info">No jobs yet. <a href="{{ url_for('jobs.add_job') }}">Add one now!</a></div>
+    {% endif %}
+</div>
+{% endblock %}
